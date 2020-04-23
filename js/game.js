@@ -86,12 +86,14 @@ function scoreUpd() {
 
 function cacheComp() {
     localStorage.setItem("compScore", cScore);
+    document.getElementById("status").innerHTML = "Computer wins!";
     changeImageForComp();
     changeImageForHuman();
 }
 
 function cachePlayer() {
     localStorage.setItem("p1Score", pScore);
+    document.getElementById("status").innerHTML = "You win!";
     changeImageForComp();
     changeImageForHuman();
 }
@@ -106,6 +108,7 @@ function compareChoice(playerChoice, compChoice) {
     //const winner = document.getElementById(); //paragraph to display result
     if (playerChoice == compChoice) {
         console.log("It is a Tie!");
+        document.getElementById("status").innerHTML = "It's a Tie!";
         waitForReload();
         return;
     } else {
