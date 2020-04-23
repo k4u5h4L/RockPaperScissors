@@ -36,23 +36,23 @@ document.getElementById("player2").innerHTML = cScore;
 let playerNum = 0;
 
 function markRock() {
-    playerNum = 0;
-    doAnimations();
-}
-
-function markPaper() {
     playerNum = 1;
     doAnimations();
 }
 
-function markScissors() {
+function markPaper() {
     playerNum = 2;
+    doAnimations();
+}
+
+function markScissors() {
+    playerNum = 3;
     doAnimations();
 }
 
 function changeImageForHuman() {
     const thatImage = document.getElementById("humanPlayer");
-    thatImage.setAttribute("src", "images/" + compOpts[playerNum] + ".png");
+    thatImage.setAttribute("src", "images/" + compOpts[playerNum - 1] + ".png");
 }
 
 function changeImageForComp() {
@@ -70,7 +70,7 @@ function doAnimations() {
 }
 
 function play() {
-    compareChoice(compOpts[playerNum], compOpts[compNum]);
+    compareChoice(compOpts[playerNum - 1], compOpts[compNum]);
 }
 
 function scoreUpd() {
@@ -104,12 +104,13 @@ function waitForReload() {
 
 function compareChoice(playerChoice, compChoice) {
     //const winner = document.getElementById(); //paragraph to display result
-    if (playerChoice === compChoice) {
+    if (playerChoice == compChoice) {
         console.log("It is a Tie!");
         waitForReload();
+        return;
     } else {
         if (playerChoice == "rock") {
-            if (compareChoice == "scissors") {
+            if (compChoice == "scissors") {
                 console.log("Player Win");
                 pScore++;
                 scoreUpd();
